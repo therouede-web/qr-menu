@@ -46,7 +46,7 @@ type PasswordStrength = {
   requirements: Requirement[];
 };
 
-const PasswordInput = ({ name = "password" }: {name?: string }) => {
+const PasswordInput = ({ name = "password" }: { name?: string }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isVisible, setIsVisible] = useState(false);
@@ -69,8 +69,9 @@ const PasswordInput = ({ name = "password" }: {name?: string }) => {
   }, [password, confirmPassword]);
 
   return (
-    <div className='space-y-4'>
-        <div className='flex justify-between'>
+    <div className='space-y-4 w-full flex justify-between gap-5'>
+      <div className='w-full'>
+        <div className='flex justify-between mb-2'>
           <label htmlFor={name} className='block text-sm font-medium'>
             Password
           </label>
@@ -78,9 +79,8 @@ const PasswordInput = ({ name = "password" }: {name?: string }) => {
             <HoverCardTrigger>
               <Info
                 size={20}
-                className={`cursor-pointer  ${
-                  STRENGTH_CONFIG.colors[calculateStrength.score]
-                } transition-all `}
+                className={`cursor-pointer  ${STRENGTH_CONFIG.colors[calculateStrength.score]
+                  } transition-all `}
               />
             </HoverCardTrigger>
             <HoverCardContent className='dark:bg-neutral-950 bg-neutral-50'>
@@ -93,9 +93,8 @@ const PasswordInput = ({ name = "password" }: {name?: string }) => {
                       <X size={16} className='text-muted-foreground/80' />
                     )}
                     <span
-                      className={`text-xs ${
-                        req.met ? 'text-emerald-600' : 'text-muted-foreground'
-                      }`}
+                      className={`text-xs ${req.met ? 'text-emerald-600' : 'text-muted-foreground'
+                        }`}
                     >
                       {req.text}
                       <span className='sr-only'>
@@ -120,9 +119,8 @@ const PasswordInput = ({ name = "password" }: {name?: string }) => {
             placeholder='Password'
             aria-invalid={calculateStrength.score < 4}
             aria-describedby='password-strength'
-            className={`cursor-pointer  ${
-              STRENGTH_CONFIG.colors[calculateStrength.score]
-            } transition-all w-full p-2 border-2 rounded-md dark:bg-neutral-950 bg-neutral-50 outline-hidden`}
+            className={`cursor-pointer  ${STRENGTH_CONFIG.colors[calculateStrength.score]
+              } transition-all w-full p-2 border-2 rounded-md dark:bg-neutral-950 bg-neutral-50 outline-hidden`}
           />
           <button
             type='button'
@@ -133,35 +131,35 @@ const PasswordInput = ({ name = "password" }: {name?: string }) => {
             {isVisible ? <EyeOff size={16} /> : <Eye size={16} />}
           </button>
         </div>
+      </div>
 
-        <div>
-          <label
-            htmlFor='confirm-password'
-            className='block text-sm font-medium'
-          >
-            Confirm Password
-          </label>
-          <input
-            id='confirm-password'
-            type={isVisible ? 'text' : 'password'}
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder='Confirm Password'
-            aria-invalid={
-              confirmPassword !== '' ? isMatch === false : undefined
-            }
-            className={`cursor-pointer w-full p-2 border-2 rounded-md dark:bg-neutral-950 bg-neutral-50 outline-hidden transition-all ${
-              confirmPassword === ''
-                ? ''
-                : isMatch
-                  ? 'border-green-400'
-                  : 'border-red-500'
+      <div className='w-full'>
+        <label
+          htmlFor='confirm-password'
+          className='block text-sm font-medium mb-2'
+        >
+          Confirm Password
+        </label>
+        <input
+          id='confirm-password'
+          type={isVisible ? 'text' : 'password'}
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          placeholder='Confirm Password'
+          aria-invalid={
+            confirmPassword !== '' ? isMatch === false : undefined
+          }
+          className={`cursor-pointer w-full p-2 border-2 rounded-md dark:bg-neutral-950 bg-neutral-50 outline-hidden transition-all ${confirmPassword === ''
+              ? ''
+              : isMatch
+                ? 'border-green-400'
+                : 'border-red-500'
             }`}
-          />
-          {confirmPassword !== '' && isMatch === false && (
-            <p className='text-red-500 text-sm mt-1'>Passwords do not match</p>
-          )}
-        </div>
+        />
+        {confirmPassword !== '' && isMatch === false && (
+          <p className='text-red-500 text-sm mt-1'>Passwords do not match</p>
+        )}
+      </div>
     </div>
   );
 };

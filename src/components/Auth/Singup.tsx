@@ -10,10 +10,14 @@ import { postApi } from "@/utils/common"
 import { LOGIN } from "@/utils/APIConstant"
 import { IROLE } from "@/types/role"
 import { IMerchants } from "@/types/merchant"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
 
-function SignIn({onChange, role = IROLE.MERCHANT}: {onChange: () => void, role: IROLE }) {
+function SignIn({ onChange }: { onChange: () => void }) {
     const router = useRouter()
-      const dispatch = useDispatch()
+    const [role, setRole] = React.useState<string>(IROLE.MERCHANT)
+    const dispatch = useDispatch()
+
+    const handleRoleChange = (e: string) => setRole(e);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -32,17 +36,18 @@ function SignIn({onChange, role = IROLE.MERCHANT}: {onChange: () => void, role: 
             values: payload as any
         })
 
-       if (res) {
-        if (!res.success) {
-            toast.error(res.message || "Signup failed")
-            return
+        if (res) {
+            if (!res.success) {
+                toast.error(res.message || "Signup failed")
+                return
+            }
+            dispatch(setMerchant(res.data))
+
+            toast.success("Account created successfully 🎉")
+
+            const urlToredirect = res.data.role === IROLE.MERCHANT ? "/service" : "/consumer"
+            router.push(urlToredirect)
         }
-        dispatch(setMerchant(res.data))
-
-        toast.success("Account created successfully 🎉")
-
-        role === IROLE.MERCHANT && router.replace("/service")
-       }
     }
 
     return (
@@ -79,11 +84,25 @@ function SignIn({onChange, role = IROLE.MERCHANT}: {onChange: () => void, role: 
                 <PasswordInput />
             </div>
 
+            <div>
+                <Select required={true} onValueChange={handleRoleChange}>
+                    <SelectTrigger>
+                        <SelectValue placeholder="Role" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectItem value={IROLE.MERCHANT}>Merchant</SelectItem>
+                            <SelectItem value={IROLE.CONSUMER}>Consumer</SelectItem>
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
+            </div>
+
             <button
                 type="submit"
                 className="mt-6 h-12 w-full rounded-lg bg-orange-600 text-sm font-semibold text-white shadow-md transition hover:bg-orange-500 active:scale-[0.98]"
             >
-                Create Merchant Account
+                Create Account
             </button>
 
             <p className="text-center text-xs text-zinc-500">

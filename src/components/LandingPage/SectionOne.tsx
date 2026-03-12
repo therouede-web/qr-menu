@@ -105,7 +105,7 @@ export default function SectionOne() {
           </div>
         </motion.div>
       </section>
-      <AuthDialog redirect={true} role={IROLE.MERCHANT} open={open} onClose={onClose} />
+      <AuthDialog open={open} onClose={onClose} />
     </>
 
   )

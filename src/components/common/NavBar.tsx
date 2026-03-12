@@ -15,8 +15,8 @@ function NavBar() {
 
   const links = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" }
+    { name: "About", href: "/" },
+    { name: "Contact", href: "/" }
   ]
 
   return (

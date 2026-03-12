@@ -26,3 +26,5 @@ export const POST_PAYMENT_VERIFY: string = "/payment/verify"
 
 // dashboard
 export const GET_DASHBOARD_MATRICES: string = "/dashboard/matrices"
+export const GET_MOST_ORDERED_ITEMS: string = "/dashboard/popular-item"
+export const GET_ORDER_TRENS: string = "/dashboard/order-trend"

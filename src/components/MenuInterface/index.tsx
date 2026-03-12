@@ -12,11 +12,12 @@ import { ApiResponse } from "@/utils/api"
 import { CONSUMER_MENU } from "@/utils/APIConstant"
 import { IMenu } from "@/types/menu"
 import { syncCartToCheckOut } from "@/store/reducer/checkout"
-import { useAppDispatch } from "@/hook/redux"
+import { useAppDispatch, useAppSelector } from "@/hook/redux"
 
 function MerchantPage({ merchantId }: { merchantId: string }) {
   const [menu, setMenu] = React.useState<IMenu[]>([])
   const dispatch = useAppDispatch();
+  const userId = useAppSelector(state => state.merchant).merchant?._id
 
   const menuItem = React.useMemo(() => {
     const map = new Map<string, IMenu[]>()
@@ -33,10 +34,10 @@ function MerchantPage({ merchantId }: { merchantId: string }) {
 
   const fetchMenu = async () => {
     const response = await getApi<ApiResponse<IMenu[]>>({
-      url: CONSUMER_MENU + `?merchantId=${merchantId}`,
+      url: CONSUMER_MENU + `?merchantId=${merchantId}&userId=${userId}`,
     })
 
-    if (response) {
+    if (response?.success) {
       setMenu(response.data)
     }
   }

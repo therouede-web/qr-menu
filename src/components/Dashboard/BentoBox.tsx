@@ -43,42 +43,55 @@ function GlassCard({
     )
 }
 
-function OrdersCard({val = 0}:{val: number}) {
+function OrdersCard({ val }: {
+    val: {
+        currWeekOrders: number,
+        trend: number
+    } | undefined
+}) {
     return (
         <GlassCard gradient="bg-gradient-to-br from-indigo-600 to-indigo-500">
             <Header title="Orders" icon={<ShoppingBag />} />
-            <Metric value={String(val)} trend="+12% this week" />
+            <Metric value={String(val?.currWeekOrders || 0)} trend={`+${val?.trend}% this week`} />
         </GlassCard>
     )
 }
 
-function RevenueCard({val}:{val: number}) {
+function RevenueCard({ val }: {
+    val: {
+        totalSum: number,
+        thisMonthSails: number
+    } | undefined
+}) {
     return (
         <GlassCard gradient="bg-gradient-to-br from-emerald-600 to-emerald-500">
             <Header title="Revenue" icon={<IndianRupee />} />
-            <Metric value={`₹${val}`} trend="+18% this month" accent="yellow" />
+            <Metric value={`₹${val?.totalSum || 0}`} trend={val?.thisMonthSails ? `+${val?.thisMonthSails} this month` : ""} accent="yellow" />
         </GlassCard>
     )
 }
 
-function VisitorsCard() {
+function VisitorsCard({ val }: { val: number }) {
     return (
         <GlassCard gradient="bg-gradient-to-br from-sky-600 to-sky-500">
             <Header title="Visitors" icon={<Users />} />
-            <Metric value="6,912" trend="QR scans" />
+            <Metric value={String(val)} trend="QR scans" />
         </GlassCard>
     )
 }
 
-function MostOrderedCard() {
+function MostOrderedCard({val}: {val: {
+        quantity: number,
+        title: string
+    } | undefined }) {
     return (
         <GlassCard gradient="bg-gradient-to-br from-purple-600 to-purple-500">
             <Header title="Most Ordered" icon={<Utensils />} />
             <div>
-                <h2 className="text-2xl font-bold">Paneer Tikka</h2>
-                <p className="mt-1 text-yellow-200 text-sm flex items-center gap-1">
-                    <TrendingUp size={14} /> 312 orders
-                </p>
+                <h2 className="text-2xl font-bold">{val?.title ? val.title : "No sales yet"}</h2>
+                {val?.quantity && <p className="mt-1 text-yellow-200 text-sm flex items-center gap-1">
+                    <TrendingUp size={14} /> {val?.quantity} orders
+                </p>}
             </div>
         </GlassCard>
     )
@@ -127,17 +140,28 @@ type Item = {
 }
 
 interface Matrices {
-    orders: number,
-    revenue: number
+    orders: {
+        currWeekOrders: number,
+        trend: number
+    },
+    revenue: {
+        totalSum: number,
+        thisMonthSails: number
+    },
+    visitor: number,
+    mostOrdered: {
+        quantity: number,
+        title: string
+    }
 }
 
 export default function BentoBox() {
-    const [matrices,setMatrices] = React.useState<Matrices | null>(null);
+    const [matrices, setMatrices] = React.useState<Matrices | null>(null);
     const initialItems: Item[] = [
-        { id: "orders", widgets: <OrdersCard val={matrices?.orders || 0} /> },
-        { id: "revenue", widgets: <RevenueCard val={matrices?.revenue || 0} /> },
-        { id: "visitors", widgets: <VisitorsCard /> },
-        { id: "most", widgets: <MostOrderedCard /> },
+        { id: "orders", widgets: <OrdersCard val={matrices?.orders} /> },
+        { id: "revenue", widgets: <RevenueCard val={matrices?.revenue} /> },
+        { id: "visitors", widgets: <VisitorsCard val={matrices?.visitor || 0} /> },
+        { id: "most", widgets: <MostOrderedCard val={matrices?.mostOrdered} /> },
     ]
 
 
@@ -162,7 +186,7 @@ export default function BentoBox() {
 
     React.useEffect(() => {
         fetch();
-    },[])
+    }, [])
 
     return (
         <div className="w-full">

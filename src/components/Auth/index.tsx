@@ -16,13 +16,9 @@ import { IMerchants } from "@/types/merchant"
 function AuthDialog({
   open,
   onClose,
-  redirect = true,
-  role = IROLE.MERCHANT
 }: {
   open: boolean
   onClose: () => void
-  redirect: boolean
-  role: IROLE
 }) {
   const [panel, setPanel] = React.useState(false)
   const [checking, setChecking] = React.useState(false)
@@ -43,11 +39,11 @@ function AuthDialog({
         })
 
         if (res?.success) {
-          console.log(res.data)
           toast.success(`Welcome back ${res.data.name} 👋`)
           dispatch(setMerchant(res.data))
           onClose()
-          redirect && router.replace("/service")
+          const urlToredirect = res.data.role === IROLE.MERCHANT ? "/service" : "/consumer"
+          router.push(urlToredirect)
         }
       } catch {
         // silent fail
@@ -70,14 +66,14 @@ function AuthDialog({
           <>
             <div className="text-center">
               <h2 className="text-2xl font-semibold text-zinc-900">
-                {role === IROLE.MERCHANT ? `${open ? "Create your merchant" : "Login"} account` : `${open ? "Create your" : "Login"} account`}
+                {!panel ? `Get Started with Qr Menu`:"Login to Qr Menu"}
               </h2>
             </div>
 
             {panel ? (
-              <SignIn role={role} onChange={handleChange} />
+              <SignIn onChange={handleChange} />
             ) : (
-              <Singup role={role} onChange={handleChange} />
+              <Singup onChange={handleChange} />
             )}
           </>
         )}

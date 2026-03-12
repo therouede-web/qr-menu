@@ -1,11 +1,15 @@
 import { verifyAuth } from "@/middleware/auth";
 import { Menu } from "@/model/menu";
+import { VisitorModel } from "@/model/visitors";
 import { sendRJResponse } from "@/utils/api";
+import { isValidObjectId } from "mongoose";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
     const merchantId = req.nextUrl.searchParams.get("merchantId");
+    const userId = req.nextUrl.searchParams.get("userId");
+
 
     if (!merchantId) {
       return sendRJResponse({
@@ -18,6 +22,12 @@ export async function GET(req: NextRequest) {
     const menu = await Menu.find({ merchantId })
       .sort({ createdAt: -1 })
       .lean();
+
+    if (!userId || merchantId !== userId) {
+      await VisitorModel.create({
+        merchantId, userId: isValidObjectId(userId) ? userId: null
+      })
+    }
 
     return sendRJResponse({
       success: true,

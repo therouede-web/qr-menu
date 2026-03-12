@@ -90,9 +90,7 @@ function ItemNotch() {
       </motion.div>
 
       <AuthDialog
-        role={IROLE.CONSUMER}
         open={open}
-        redirect={false}
         onClose={onClose}
       />
     </>

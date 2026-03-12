@@ -21,11 +21,18 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { useAppSelector } from "@/hook/redux"
+import Link from "next/link"
 
-const coreItems = [
+
+
+export default function AppSidebar() {
+  const merchantId = useAppSelector(state => state.merchant).merchant?._id
+  const uid = useAppSelector(state => state.merchant).merchant?.uid
+  const coreItems = [
   {
     title: "Dashboard",
-    url: "/dashboard",
+    url: `/dashboard/${merchantId}?uid=${uid}`,
     icon: LayoutDashboard,
   },
   {
@@ -35,7 +42,7 @@ const coreItems = [
   },
   {
     title: "QR Codes",
-    url: "/qr/982379283",
+    url: `/qr/${merchantId}`,
     icon: QrCode,
   },
   {
@@ -48,17 +55,10 @@ const coreItems = [
 const businessItems = [
   {
     title: "Orders",
-    url: "/orders",
+    url: `${merchantId}/order`,
     icon: ShoppingBag,
   },
-  {
-    title: "Analytics",
-    url: "/analytics",
-    icon: BarChart3,
-  },
 ]
-
-export default function AppSidebar() {
   return (
     <Sidebar collapsible="icon" className="pt-16">
       <SidebarContent>
@@ -71,10 +71,10 @@ export default function AppSidebar() {
               {coreItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild tooltip={item.title}>
-                    <a href={item.url} className="flex items-center gap-3">
+                    <Link href={item.url} className="flex items-center gap-3">
                       <item.icon className="h-4 w-4" />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -90,10 +90,10 @@ export default function AppSidebar() {
               {businessItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild tooltip={item.title}>
-                    <a href={item.url} className="flex items-center gap-3">
+                    <Link href={item.url} className="flex items-center gap-3">
                       <item.icon className="h-4 w-4" />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

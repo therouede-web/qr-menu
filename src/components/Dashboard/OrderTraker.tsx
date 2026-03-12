@@ -1,20 +1,29 @@
 "use client"
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
+import React from "react"
+import { getApi } from "@/utils/common"
+import { ApiResponse } from "@/utils/api"
+import { GET_ORDER_TRENS } from "@/utils/APIConstant"
 
-const dummyOrdersData = [
-  { day: "Mon", orders: 120 },
-  { day: "Tue", orders: 210 },
-  { day: "Wed", orders: 165 },
-  { day: "Thu", orders: 260 },
-  { day: "Fri", orders: 310 },
-  { day: "Sat", orders: 420 },
-  { day: "Sun", orders: 380 },
-]
+interface OrderTrends { day: string; orders: number }
 
-export default function OrderTrackingChart({
-  orders = dummyOrdersData,
-}: { orders?: { day: string; orders: number }[]}) {
+export default function OrderTrackingChart() {
+  const [trends,setTrends] = React.useState<OrderTrends[]>([])
+
+  const fetch = async () => {
+    const response = await getApi<ApiResponse<OrderTrends[]>>({
+      url: GET_ORDER_TRENS
+    });
+
+    if (response?.success) {
+      setTrends(response.data);
+    }
+  }
+
+  React.useEffect(() => {
+    fetch()
+  },[])
   return (
     <div className="col-span-12 xl:col-span-8 bg-white rounded-2xl p-6 shadow-xl">
 
@@ -28,17 +37,13 @@ export default function OrderTrackingChart({
             Last 7 days performance
           </p>
         </div>
-
-        <span className="text-sm font-medium text-green-600">
-          +18% ↑
-        </span>
       </div>
 
       {/* CHART */}
       <div className="h-[280px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
-            data={orders}
+            data={trends}
             margin={{ top: 10, right: 20, left: -10, bottom: 0 }}
           >
             {/* soft grid */}

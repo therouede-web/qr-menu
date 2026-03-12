@@ -57,7 +57,7 @@ const GenerateQRPage = () => {
       return
     }
 
-    setPreviewQR(`${BASE_URL}/menu/${merchantId}?id=${inputName}`)
+    setPreviewQR(`${BASE_URL}/consumer/${merchantId}?id=${inputName}`)
   }
 
   const handleSaveQR = async () => {

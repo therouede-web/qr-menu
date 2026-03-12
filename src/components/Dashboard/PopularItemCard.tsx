@@ -1,19 +1,36 @@
 "use client"
 
-const dummyTopItems = [
-  { name: "Paneer Tikka", count: 312 },
-  { name: "Butter Naan", count: 278 },
-  { name: "Veg Biryani", count: 241 },
-  { name: "Masala Dosa", count: 198 },
-]
+import { ApiResponse } from "@/utils/api";
+import { GET_MOST_ORDERED_ITEMS } from "@/utils/APIConstant";
+import { getApi } from "@/utils/common";
+import React from "react";
 
-export default function PopularItemsCard({
-  topOrderedItems = dummyTopItems,
-  isLoading = false,
-}: {
-  topOrderedItems?: { name: string; count: number }[]
-  isLoading?: boolean
-}) {
+interface MostOrderItem {
+  quantity: number,
+  title: string
+}
+
+export default function PopularItemsCard() {
+  const [items,setItems] = React.useState<MostOrderItem[]>([]);
+  const [loading, setLoading] = React.useState<boolean>(false);
+  
+    const fetch = async () => {
+      setLoading(true);
+      const response = await getApi<ApiResponse<MostOrderItem[]>>({
+        url: GET_MOST_ORDERED_ITEMS
+      });
+
+      setLoading(false);
+  
+      if (response?.success) {
+        setItems(response.data);
+      }
+    }
+
+    React.useEffect(() => {
+      fetch();
+    },[])
+
   return (
     <div className="bg-white rounded-2xl p-6 shadow-xl col-span-12 md:col-span-6 xl:col-span-4">
 
@@ -29,17 +46,17 @@ export default function PopularItemsCard({
 
       {/* LIST */}
       <div className="space-y-3">
-        {isLoading ? (
+        {loading ? (
           Array.from({ length: 4 }).map((_, index) => (
             <SkeletonRow key={index} />
           ))
-        ) : topOrderedItems.length > 0 ? (
-          topOrderedItems.map((item, index) => (
+        ) : items.length > 0 ? (
+          items.map((item, index) => (
             <ItemRow
-              key={item.name}
+              key={item.title}
               index={index}
-              name={item.name}
-              count={item.count}
+              name={item.title}
+              count={item.quantity}
             />
           ))
         ) : (
@@ -49,8 +66,6 @@ export default function PopularItemsCard({
     </div>
   )
 }
-
-/* ================= SUB COMPONENTS ================= */
 
 function ItemRow({
   index,
