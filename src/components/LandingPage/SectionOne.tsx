@@ -43,7 +43,7 @@ export default function SectionOne() {
               <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-1.5 backdrop-blur-md">
                 <Sparkles className="w-4 h-4 text-orange-400" />
                 <span className="text-[10px] lg:text-sm font-bold tracking-widest text-white uppercase">
-                  O Novo Padrão para Bares e Restaurantes
+                  O Novo Padrão para Restaurantes Italianos
                 </span>
               </div>
             </motion.div>
@@ -52,15 +52,15 @@ export default function SectionOne() {
               variants={item}
               className="font-playfair text-[42px] md:text-[68px] lg:text-[84px] leading-[1.1] text-white font-semibold"
             >
-              Um jeito inteligente <br className="hidden sm:block" />
-              de atender seus <span className="italic text-orange-400 font-normal underline decoration-orange-400/30 underline-offset-8">clientes.</span>
+              Autêntica cozinha italiana <br className="hidden sm:block" />
+              com <span className="italic text-orange-400 font-normal underline decoration-orange-400/30 underline-offset-8">pedido via QR Code.</span>
             </motion.h1>
 
             <motion.p
               variants={item}
               className="mt-6 text-zinc-300 text-base md:text-lg lg:text-xl leading-relaxed max-w-xl font-light"
             >
-              Cardápios via QR Code instantâneos para estabelecimentos modernos. Sem precisar baixar nenhum aplicativo. É só escanear, pedir e saborear.
+              Cardápio digital completo. Escaneie o QR Code da mesa, peça suas massas, pizzas e risotos favoritos e aproveite a experiência sem esperar.
             </motion.p>
 
             <motion.div
@@ -83,7 +83,7 @@ export default function SectionOne() {
                   className="w-full inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/5 px-10 py-4 text-white font-semibold backdrop-blur-xl hover:bg-white hover:text-black transition-all"
                 >
                   <QrCode className="w-5 h-5 opacity-70" />
-                  Demo ao Vivo
+                  Ver Demo
                 </Link>
               </motion.div>
             </motion.div>
@@ -106,6 +106,5 @@ export default function SectionOne() {
       </section>
       <AuthDialog open={open} onClose={onClose} />
     </>
-
   )
 }
