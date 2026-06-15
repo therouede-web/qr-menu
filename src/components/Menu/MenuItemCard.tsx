@@ -40,7 +40,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
 
     try {
       setDeleting(true)
-      toast.loading("Deleting item...", { id: "delete-item" })
+      toast.loading("Excluindo item...", { id: "delete-item" })
 
       const res = await deleteApi<ApiResponse<IMenu>>({
         url: REMOVE_ITEM,
@@ -52,10 +52,10 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
       }
 
       deleteCard(id)
-      toast.success("Item deleted", { id: "delete-item" })
+      toast.success("Item excluído com sucesso", { id: "delete-item" })
     } catch (err: any) {
       toast.error(
-        err.response?.data?.message || "Failed to delete item",
+        err.response?.data?.message || "Falha ao excluir o item",
         { id: "delete-item" }
       )
     } finally {
@@ -94,12 +94,12 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
           <p
             className="cursor-pointer text-xs text-gray-500"
           >
-            1 pc • {quantity} g
+            1 un • {quantity} g
           </p>
-          <span className="text-xl font-bold">₹{price}</span>
+          <span className="text-xl font-bold">R$ {price}</span>
           {originalPrice && (
             <span className="text-sm line-through text-gray-500">
-              ₹{originalPrice}
+              R$ {originalPrice}
             </span>
           )}
         </div>
