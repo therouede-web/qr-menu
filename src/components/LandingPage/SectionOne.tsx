@@ -43,7 +43,7 @@ export default function SectionOne() {
               <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-1.5 backdrop-blur-md">
                 <Sparkles className="w-4 h-4 text-orange-400" />
                 <span className="text-[10px] lg:text-sm font-bold tracking-widest text-white uppercase">
-                  The New Standard for Dhabas
+                  O Novo Padrão para Bares e Restaurantes
                 </span>
               </div>
             </motion.div>
@@ -52,16 +52,15 @@ export default function SectionOne() {
               variants={item}
               className="font-playfair text-[42px] md:text-[68px] lg:text-[84px] leading-[1.1] text-white font-semibold"
             >
-              A smarter way <br className="hidden sm:block" />
-              to serve <span className="italic text-orange-400 font-normal underline decoration-orange-400/30 underline-offset-8">guests.</span>
+              Um jeito inteligente <br className="hidden sm:block" />
+              de atender seus <span className="italic text-orange-400 font-normal underline decoration-orange-400/30 underline-offset-8">clientes.</span>
             </motion.h1>
 
             <motion.p
               variants={item}
               className="mt-6 text-zinc-300 text-base md:text-lg lg:text-xl leading-relaxed max-w-xl font-light"
             >
-              Instant QR menus for modern restaurants. No app downloads required.
-              Just scan, order, and enjoy.
+              Cardápios via QR Code instantâneos para estabelecimentos modernos. Sem precisar baixar nenhum aplicativo. É só escanear, pedir e saborear.
             </motion.p>
 
             <motion.div
@@ -71,9 +70,9 @@ export default function SectionOne() {
               <motion.div className="w-full sm:w-auto" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                 <i
                   onClick={() => setOpen(true)}
-                  className="group w-full inline-flex items-center justify-center gap-3 rounded-full bg-orange-600 px-10 py-4 text-white font-bold shadow-xl shadow-orange-900/20 transition-all hover:bg-orange-500"
+                  className="group w-full inline-flex items-center justify-center gap-3 rounded-full bg-orange-600 px-10 py-4 text-white font-bold shadow-xl shadow-orange-900/20 transition-all hover:bg-orange-500 cursor-pointer not-italic"
                 >
-                  Get Started
+                  Começar Agora
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </i>
               </motion.div>
@@ -84,7 +83,7 @@ export default function SectionOne() {
                   className="w-full inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/5 px-10 py-4 text-white font-semibold backdrop-blur-xl hover:bg-white hover:text-black transition-all"
                 >
                   <QrCode className="w-5 h-5 opacity-70" />
-                  Live Demo
+                  Demo ao Vivo
                 </Link>
               </motion.div>
             </motion.div>
@@ -94,12 +93,12 @@ export default function SectionOne() {
               className="mt-16 pt-8 border-t border-white/10 flex justify-center lg:justify-start gap-12"
             >
               <div className="text-center lg:text-left">
-                <p className="text-white text-xl lg:text-2xl font-bold italic tracking-tighter">Instant</p>
-                <p className="text-zinc-500 text-[10px] uppercase tracking-[0.2em] font-medium">Activation</p>
+                <p className="text-white text-xl lg:text-2xl font-bold italic tracking-tighter">Imediata</p>
+                <p className="text-zinc-500 text-[10px] uppercase tracking-[0.2em] font-medium">Ativação</p>
               </div>
               <div className="text-center lg:text-left">
                 <p className="text-white text-xl lg:text-2xl font-bold italic tracking-tighter">Zero</p>
-                <p className="text-zinc-500 text-[10px] uppercase tracking-[0.2em] font-medium">Monthly Fees</p>
+                <p className="text-zinc-500 text-[10px] uppercase tracking-[0.2em] font-medium">Taxas Mensais</p>
               </div>
             </motion.div>
           </div>
