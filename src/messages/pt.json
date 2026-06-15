@@ -2,7 +2,9 @@
   "signup": {
     "title": "Comece com o QR Menu",
     "goodName": "Seu nome completo *",
+    "namePlaceholder": "ex: Érick Pinto",
     "email": "Endereço de email *",
+    "emailPlaceholder": "voce@frangoassado.com",
     "password": "Senha",
     "confirmPassword": "Confirmar Senha",
     "role": "Função",
@@ -17,7 +19,12 @@
     "noAppRequired": "Sem necessidade de app para os clientes"
   },
   "dashboard": {
-    "title": "Dashboard & Insights",
+    "title": "Painel & Insights",
     "welcome": "Bem-vindo ao seu painel"
+  },
+  "common": {
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "edit": "Editar"
   }
 }
