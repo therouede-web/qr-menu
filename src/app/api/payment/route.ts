@@ -7,11 +7,6 @@ import { Order } from "@/model/order"
 import { Transaction, TransactionStatus } from "@/model/transations"
 import { Merchants } from "@/model/merchants"
 
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID!,
-  key_secret: process.env.RAZORPAY_KEY_SECRET!,
-})
-
 export async function GET(req: NextRequest) {
   try {
     const userId = await verifyAuth(req)
@@ -57,6 +52,12 @@ export async function GET(req: NextRequest) {
         status: 400,
       })
     }
+
+    // ✅ Criação do Razorpay AQUI dentro da função (agora funciona no build)
+    const razorpay = new Razorpay({
+      key_id: process.env.RAZORPAY_KEY_ID!,
+      key_secret: process.env.RAZORPAY_KEY_SECRET!,
+    })
 
     const order = await Order.create({
       userId,
