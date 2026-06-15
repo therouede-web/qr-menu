@@ -1,51 +1,48 @@
-import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import "./globals.css"
-import NavBar from "@/components/common/NavBar"
-import { Toaster } from "react-hot-toast"
-import { ReduxProvider } from "@/context/redux"
-import Script from "next/script"
+// src/components/Footer.tsx - Versão traduzida para Restaurante Italiano
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
-
-export const metadata: Metadata = {
-  title: "My Rj Menu",
-  description: "Instant QR menus for modern restaurants. No app downloads required. Just scan, order, and enjoy.",
-}
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function Footer() {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col`}
-      >
-        <ReduxProvider>
-          <NavBar />
+    <footer className="bg-zinc-950 text-zinc-400 py-12 border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+        
+        <div>
+          <h3 className="text-white font-semibold mb-4">PRODUTO</h3>
+          <ul className="space-y-2 text-sm">
+            <li>Funcionalidades</li>
+            <li>Preços</li>
+            <li>Início</li>
+            <li>Atualizações</li>
+          </ul>
+        </div>
 
-          <main className="flex-1">
-            {children}
-          </main>
+        <div>
+          <h3 className="text-white font-semibold mb-4">EMPRESA</h3>
+          <ul className="space-y-2 text-sm">
+            <li>Sobre Nós</li>
+            <li>Carreiras</li>
+            <li>Blog</li>
+            <li>Contato</li>
+          </ul>
+        </div>
 
-          <Toaster />
-        </ReduxProvider>
+        <div>
+          <h3 className="text-white font-semibold mb-4">SUPORTE</h3>
+          <ul className="space-y-2 text-sm">
+            <li>Perguntas Frequentes</li>
+            <li>Política de Privacidade</li>
+            <li>Termos de Serviço</li>
+          </ul>
+        </div>
 
-        <Script
-          src="https://checkout.razorpay.com/v1/checkout.js"
-          strategy="afterInteractive"
-        />
-      </body>
-    </html>
+        <div>
+          <h3 className="text-white font-semibold mb-4">RESTAURANTE ITALIANO</h3>
+          <p className="text-sm">Cardápio digital completo com QR Code.<br />Massas, pizzas, risotos e vinhos.</p>
+        </div>
+      </div>
+
+      <div className="text-center text-xs text-zinc-500 mt-12">
+        © 2026 QR Menu - Todos os direitos reservados
+      </div>
+    </footer>
   )
 }
