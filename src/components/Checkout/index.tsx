@@ -32,7 +32,7 @@ function CheckoutPage({ merchantId }: { merchantId: string }) {
     if (!res?.success || !res.data) return
 
     if (!(window as any).Razorpay) {
-      toast.error("Razorpay SDK not loaded")
+      toast.error("O sistema de pagamento não foi carregado")
       return
     }
 
@@ -41,10 +41,10 @@ function CheckoutPage({ merchantId }: { merchantId: string }) {
     const options = {
       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
       amount: order.amount,
-      currency: "INR",
-      name: "Raj is Great",
+      currency: "BRL",
+      name: "App Midas",
       image: "https://res.cloudinary.com/dcyn3ewpv/image/upload/v1769262410/e9eec5ed9a883498f7c5ba1ed3c27fdc_idvihd.jpg",
-      description: "Your order enters the domain",
+      description: "Seu pedido está sendo processado",
       order_id: order.id,
       handler: async function (response: any) {
 
@@ -75,26 +75,26 @@ function CheckoutPage({ merchantId }: { merchantId: string }) {
     // Header
     doc.setFont("times", "bold")
     doc.setFontSize(22)
-    doc.text("Payment Receipt - Qr Menu", pageWidth / 2, 20, { align: "center" })
+    doc.text("Comprovante de Pedido - App Midas", pageWidth / 2, 20, { align: "center" })
 
     doc.setFontSize(12)
-    doc.text(`Date: ${new Date().toLocaleString()}`, 14, 35)
+    doc.text(`Data: ${new Date().toLocaleString('pt-BR')}`, 14, 35)
 
     autoTable(doc, {
       startY: 45,
-      head: [["Field", "Details"]],
+      head: [["Campo", "Detalhes"]],
       body: [
-        ["Payment ID", payment.razorpay_payment_id],
-        ["Order ID", payment.razorpay_order_id],
-        ["Merchant", payment.order?.notes?.merchant || "Raj is Great"],
-        ["email", payment.order?.notes?.email || "unknown"],
-        ["Amount", (payment.amount / 100 || "—")],
-        ["Status", "SUCCESS"],
+        ["ID do Pagamento", payment.razorpay_payment_id],
+        ["ID do Pedido", payment.razorpay_order_id],
+        ["Estabelecimento", payment.order?.notes?.merchant || "App Midas"],
+        ["E-mail", payment.order?.notes?.email || "Não informado"],
+        ["Valor Total", `R$ ${(payment.amount / 100 || "—")}`],
+        ["Status", "SUCESSO / CONCLUÍDO"],
       ],
       theme: "grid"
     })
 
-    doc.save(`receipt-${payment.razorpay_payment_id}.pdf`)
+    doc.save(`comprovante-${payment.razorpay_payment_id}.pdf`)
   }
 
   const handleLogPayment = async (req: any) => {
@@ -116,7 +116,7 @@ function CheckoutPage({ merchantId }: { merchantId: string }) {
   if (checkout.length === 0) {
     return (
       <div className="px-6 pt-20 text-center text-gray-500">
-        Your cart is empty
+        Seu carrinho está vazio
       </div>
     )
   }
@@ -139,7 +139,7 @@ function CheckoutPage({ merchantId }: { merchantId: string }) {
     <div className="relative min-h-screen bg-gray-50 px-6 pt-20">
 
       <h1 className="mb-4 font-mono text-2xl text-zinc-950">
-        Checkout
+        Finalizar Pedido
       </h1>
 
       {/* Items */}
@@ -154,25 +154,25 @@ function CheckoutPage({ merchantId }: { merchantId: string }) {
 
         <div className="mb-3 space-y-1 text-sm">
           <div className="flex justify-between text-gray-500">
-            <span>Item total</span>
-            <span className="line-through">₹{originalTotal}</span>
+            <span>Subtotal dos itens</span>
+            <span className="line-through">R$ {originalTotal}</span>
           </div>
 
           <div className="flex justify-between font-medium text-green-600">
-            <span>Just for you</span>
-            <span>₹{discountedTotal}</span>
+            <span>Desconto exclusivo</span>
+            <span>R$ {discountedTotal}</span>
           </div>
 
           {savings > 0 && (
             <div className="flex justify-between text-xs text-green-600">
-              <span>You saved</span>
-              <span>₹{savings}</span>
+              <span>Você economizou</span>
+              <span>R$ {savings}</span>
             </div>
           )}
         </div>
 
         <button onClick={handlePay} className="w-full cursor-pointer rounded-xl bg-green-600 py-3 text-sm font-semibold text-white hover:bg-green-700 transition">
-          Place Order • ₹{discountedTotal}
+          Confirmar Pedido • R$ {discountedTotal}
         </button>
       </div>
     </div>
