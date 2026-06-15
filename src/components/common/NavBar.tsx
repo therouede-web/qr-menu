@@ -16,9 +16,9 @@ function NavBar() {
   const user = useAppSelector(state => state.merchant).merchant
 
   const links = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/" },
-    { name: "Contact", href: "/" }
+    { name: "Início", href: "/" },
+    { name: "Sobre", href: "/" },
+    { name: "Contato", href: "/" }
   ]
 
   const handleLogOut = async () => {
@@ -35,7 +35,7 @@ function NavBar() {
         <div className="flex h-16 items-center justify-between">
 
           <Link href="/" className="text-xl font-bold tracking-tight">
-            <span className="text-[#A18D6D]">QR</span>Menu
+            App <span className="text-[#A18D6D]">Midas</span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -54,7 +54,7 @@ function NavBar() {
                 href={`/dashboard/${user._id}?uid=${user.uid}`}
                 className="text-sm font-medium text-gray-600 hover:text-black transition-colors"
               >
-                Dashboard
+                Painel
               </Link>}
 
               {user && user.role === "CONSUMER" &&
@@ -62,12 +62,12 @@ function NavBar() {
                 href={`/detail/${user._id}`}
                 className="text-sm font-medium text-gray-600 hover:text-black transition-colors"
               >
-                Transections
+                Transações
               </Link>}
 
               {user && (
                 <button onClick={handleLogOut} className="text-sm cursor-pointer font-medium text-gray-600 hover:text-black transition-colors">
-                  LogOut
+                  Sair
                 </button>
               )}
 
@@ -77,7 +77,7 @@ function NavBar() {
 
             <Avatar className="h-9 w-9 cursor-pointer">
               <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>TR</AvatarFallback>
+              <AvatarFallback>AM</AvatarFallback>
             </Avatar>
 
             <Button
@@ -114,7 +114,7 @@ function NavBar() {
               href={`/dashboard/${user._id}?uid=${user.uid}`}
               className="text-sm font-medium text-gray-600 hover:text-black transition-colors"
             >
-              Dashboard
+              Painel
             </Link>}
 
             {user && user.role === "CONSUMER" &&
@@ -122,11 +122,11 @@ function NavBar() {
                 href={`/detail/${user._id}`}
                 className="text-sm font-medium text-gray-600 hover:text-black transition-colors"
               >
-                Transections
+                Transações
               </Link>}
               {user && (
                 <button onClick={handleLogOut} className="text-sm cursor-pointer font-medium text-gray-600 hover:text-black transition-colors">
-                  LogOut
+                  Sair
                 </button>
               )}
               
