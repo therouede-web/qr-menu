@@ -1,1 +1,23 @@
-
+{
+  "signup": {
+    "title": "Comece com o QR Menu",
+    "goodName": "Seu nome completo *",
+    "email": "Endereço de email *",
+    "password": "Senha",
+    "confirmPassword": "Confirmar Senha",
+    "role": "Função",
+    "createAccount": "Criar Conta",
+    "alreadyHave": "Já tem uma conta? ",
+    "signIn": "Entrar"
+  },
+  "marketing": {
+    "dynamicMenus": "Cardápios Dinâmicos",
+    "forModernRestaurants": "para Restaurantes Modernos",
+    "realTimeUpdates": "Atualizações em tempo real do cardápio",
+    "noAppRequired": "Sem necessidade de app para os clientes"
+  },
+  "dashboard": {
+    "title": "Dashboard & Insights",
+    "welcome": "Bem-vindo ao seu painel"
+  }
+}
