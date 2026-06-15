@@ -12,7 +12,7 @@ function FaQsection() {
     <section id='faq'>
       <div className="bg-[#F8F5F0] h-full flex flex-col justify-center p-8 sm:p-12 md:p-20">
         <div className='flex items-baseline gap-2'>
-          <h1 className='text-[#d1b895] font-playfair text-[48px] md:text-[54px] lg:text-[64px] font-bold'>FAQ</h1> <span className='text-[#4e4231] font-playfair text-[28px] md:text-[34px] lg:text-[44px] font-bold'>s</span>
+          <h1 className='text-[#d1b895] font-playfair text-[48px] md:text-[54px] lg:text-[64px] font-bold'>Perguntas</h1> <span className='text-[#4e4231] font-playfair text-[28px] md:text-[34px] lg:text-[44px] font-bold'>Frequentes</span>
         </div>
         <Accordion
           type="single"
@@ -22,64 +22,56 @@ function FaQsection() {
         >
           <AccordionItem value="item-1">
             <AccordionTrigger className='decoration-accent cursor-pointer'>
-              What is a QR Menu and how does it work?
+              O que é um Cardápio QR e como ele funciona?
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
               <p>
-                A QR Menu allows customers to scan a QR code using their phone and
-                instantly view your restaurant menu online — no app required.
+                Um Cardápio QR permite que os clientes escaneiem um código QR usando a própria câmera do celular e visualizem instantaneamente o menu do seu restaurante online — sem precisar baixar nenhum aplicativo.
               </p>
               <p>
-                Once scanned, the menu opens in the browser where customers can
-                browse items, prices, descriptions, and updates in real time.
+                Uma vez escaneado, o cardápio abre direto no navegador do smartphone, onde o cliente pode navegar pelos produtos, preços, descrições e ver atualizações em tempo real.
               </p>
             </AccordionContent>
           </AccordionItem>
 
           <AccordionItem value="item-2">
             <AccordionTrigger className='decoration-accent cursor-pointer'>
-              Do customers need to install an app?
+              Os clientes precisam instalar algum aplicativo?
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
               <p>
-                No. Customers can access the menu directly through their mobile
-                browser by scanning the QR code.
+                Não. Os clientes acessam o cardápio de forma direta e limpa através do navegador móvel, apenas apontando a câmera para o código QR.
               </p>
               <p>
-                This makes the experience fast, simple, and accessible on any
-                smartphone.
+                Isso torna a experiência de atendimento extremamente rápida, simples e acessível para qualquer tipo de smartphone.
               </p>
             </AccordionContent>
           </AccordionItem>
 
           <AccordionItem value="item-3">
             <AccordionTrigger className='decoration-accent cursor-pointer'>
-              Can I update my menu anytime?
+              Posso atualizar o meu cardápio quando quiser?
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
               <p>
-                Yes. You can update items, prices, availability, and categories at
-                any time from the dashboard.
+                Sim. Você pode alterar produtos, preços, fotos, disponibilidade e categorias a qualquer momento do dia direto pelo seu painel de controle administrativo.
               </p>
               <p>
-                All changes are reflected instantly on the QR menu without
-                reprinting codes.
+                Todas as alterações são refletidas de forma instantânea no cardápio que o cliente visualiza, eliminando totalmente a necessidade de reimprimir códigos ou papéis.
               </p>
             </AccordionContent>
           </AccordionItem>
 
           <AccordionItem value="item-4">
             <AccordionTrigger className='decoration-accent cursor-pointer'>
-              Is the QR Menu suitable for all restaurants?
+              O Cardápio QR é indicado para qual tipo de estabelecimento?
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
               <p>
-                Absolutely. QR menus work well for cafés, restaurants, food
-                courts, bars, and cloud kitchens.
+                Com certeza. O sistema funciona perfeitamente para restaurantes, cafés, bares, lanchonetes, praças de alimentação, hotéis e dark kitchens (modelos focados apenas em delivery).
               </p>
               <p>
-                It helps reduce printing costs, improve hygiene, and enhance the
-                customer experience.
+                Ele é o aliado ideal para reduzir custos operacionais com impressões gráficas, otimizar o tempo dos garçons e modernizar o atendimento.
               </p>
             </AccordionContent>
           </AccordionItem>
