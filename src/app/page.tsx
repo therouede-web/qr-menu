@@ -1,5 +1,5 @@
-import LandingPage from "@/components/LandingPage"
+import SectionOne from "@/components/LandingPage/SectionOne";
 
 export default function Home() {
-  return <LandingPage />;
+  return <SectionOne />;
 }
