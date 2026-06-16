@@ -3,8 +3,8 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Lellis Trattoria - Cardápio Digital",
-  description: "Cardápio digital oficial da Lellis Trattoria - Autêntica cozinha italiana",
+  title: "QR Menu - Cardápio Digital",
+  description: "Cardápio digital simples e moderno para restaurantes",
   icons: {
     icon: "/favicon.ico",
   },
